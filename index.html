@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>八年之约·致臻邀请</title>
+    <title>0.56年之约·致臻邀请</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
@@ -29,6 +29,7 @@
             font-family: 'Noto Serif SC', serif;
             overflow: hidden;
             perspective: 1800px;
+            padding: 24px 12px;
         }
 
         /* 噪点纹理覆盖 - 增加质感 */
@@ -41,17 +42,15 @@
         /* 主容器 */
         .card-container {
             position: relative;
-            width: 86vw;
-            max-width: 350px;
-            height: 78vh;
-            max-height: 660px;
+            width: clamp(300px, 86vw, 520px);
+            height: clamp(420px, 78vh, 760px);
             transform-style: preserve-3d;
             transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
             cursor: pointer;
         }
         
         .card-container.open {
-            transform: translateX(15%) rotateY(-5deg); /* 微微倾斜更有3D感 */
+            transform: translateX(12%) rotateY(-5deg);
         }
 
         /* 通用阴影 */
@@ -143,7 +142,7 @@
             z-index: 5;
         }
 
-        /* 4. 八年文案 (极细字体，雅致) */
+        /* 4. 0.56年文案 (极细字体，雅致) */
         .side-text-col {
             position: absolute;
             top: 15vh;
@@ -177,7 +176,7 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--card-paper);
             border-radius: 4px;
-            padding: 20px;
+            padding: 18px;
             display: flex; flex-direction: column;
             color: var(--text-dark);
             box-shadow: inset 0 0 40px rgba(0,0,0,0.05); /* 纸张内凹感 */
@@ -187,7 +186,7 @@
         .inner-frame {
             border: 3px double var(--card-red);
             height: 100%; width: 100%;
-            padding: 20px 15px;
+            padding: 18px 14px;
             display: flex; flex-direction: column; align-items: center;
             position: relative;
         }
@@ -272,6 +271,20 @@
             opacity: 0.6;
             mix-blend-mode: multiply;
         }
+
+        /* ---------- Responsive Tweaks ---------- */
+        @media (max-height: 680px) {
+            body { overflow: auto; align-items: flex-start; }
+            .card-container { margin: 12px 0 24px; }
+        }
+
+        @media (min-width: 900px) {
+            body { padding: 40px 24px; }
+            .card-container.open { transform: translateX(18%) rotateY(-6deg); }
+            .inside-page { padding: 24px; }
+            .inner-frame { padding: 22px 18px; }
+            .header-xi { font-size: 26px; }
+        }
         
     </style>
 </head>
@@ -290,9 +303,9 @@
             <!-- 印章风格的囍 -->
             <div class="xi-seal">囍</div>
 
-            <!-- 左侧：竖排八年文案 (极细分割线风格) -->
+            <!-- 左侧：竖排0.56年文案 (极细分割线风格) -->
             <div class="side-text-col">
-                <div class="side-text">在一起八年啦！</div>
+                <div class="side-text">在一起0.56年啦！</div>
             </div>
 
             <!-- 主标题：双层叠加制造立体感 -->
@@ -341,7 +354,7 @@
                 </div>
 
                 <div class="footer-stamp">
-                    八年<br>之约
+                    0.56年<br>之约
                 </div>
             </div>
         </div>

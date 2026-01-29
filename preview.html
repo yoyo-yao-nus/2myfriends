@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手机端预览</title>
+    <style>
+        :root {
+            --bg: #0f0f10;
+            --card: #1d1e20;
+            --accent: #f0c66b;
+            --text: #e8e8e8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(1200px 700px at 20% 10%, #1a1c20, #0c0d10 60%);
+            color: var(--text);
+            font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(15,15,16,0.75);
+            backdrop-filter: blur(6px);
+        }
+
+        .title {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #b7b7b7;
+        }
+
+        .btn {
+            margin-left: auto;
+            background: transparent;
+            border: 1px solid rgba(240,198,107,0.6);
+            color: var(--accent);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .stage {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .phone-frame {
+            width: 390px;
+            height: 844px;
+            border-radius: 36px;
+            background: var(--card);
+            padding: 14px;
+            box-shadow:
+                0 20px 80px rgba(0,0,0,0.45),
+                inset 0 0 0 1px rgba(255,255,255,0.06);
+            position: relative;
+        }
+
+        .notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 24px;
+            background: #0b0b0c;
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+        }
+
+        .preview {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 28px;
+            background: #000;
+        }
+
+        @media (max-width: 480px) {
+            .stage { padding: 16px; }
+            .phone-frame { width: 100%; height: 100%; border-radius: 28px; }
+            .preview { border-radius: 22px; }
+            .notch { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="title">Mobile Preview</div>
+        <button class="btn" onclick="reloadPreview();">
+            刷新预览
+        </button>
+    </div>
+
+    <div class="stage">
+        <div class="phone-frame">
+            <div class="notch"></div>
+            <iframe id="preview" class="preview" src="index.html"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function reloadPreview() {
+            const iframe = document.getElementById('preview');
+            const base = iframe.getAttribute('src').split('?')[0];
+            iframe.src = `${base}?t=${Date.now()}`;
+        }
+    </script>
+</body>
+</html>
